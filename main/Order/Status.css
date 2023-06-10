@@ -36,6 +36,7 @@
 }
 .delivery div{
     border: 1px dashed rgba(0, 0, 0, .1);
+    border-radius: 17px;
     flex:3;
     
 }
