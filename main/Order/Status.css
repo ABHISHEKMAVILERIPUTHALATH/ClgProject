@@ -1,3 +1,6 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
 .status{
     display: flex;
     /* flex: 3; */
@@ -23,32 +26,38 @@
 .status div:hover{
     color: red;
 }
-.delivery{
-    margin-top: 15px;
-    background-color:#DBF1E5;
+#orderlist{
+    width:100%;
     display: flex;
-    justify-content: space-between;
-    flex:1;
-    height: 35vh;
-    border-radius: 17px;
-    
-    
+    flex-direction: column;
+    align-items: center;
 }
-.delivery div{
-    border: 1px dashed rgba(0, 0, 0, .1);
+.Delivery{
+    background-color:#F4FFF2 ;
     border-radius: 17px;
-    flex:3;
-    
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    width: 80%;
+    min-width: 10%;
+    display: flex;
+    /* border: 1px solid black; */
+    justify-content:space-evenly ;
+    margin: 10px 0;
 }
 
-.delivery div div{
-    display: flex;
-    gap:10px;
+.Delivery *{
+    font-family: poppins;
+    padding: 10px;
+    
 }
-.delivery p{
-    font-size: medium;
-    font-family: sans-serif;
-    color: rgba(0, 0, 0, .7);
-}
+#ProdReady{
+    border-style: none;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    /* background-color: #3e8e41; */
+
+  }
+  #ProdReady:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
 
 
