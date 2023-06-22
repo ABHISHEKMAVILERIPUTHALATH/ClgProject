@@ -7,7 +7,7 @@ var db = firebase.firestore();
                 var orderlist = document.getElementById("orderlist")
 
                 // Function to render each document inside the div
-                function renderDocument(doc) {
+                function renderDocumen(doc) {
                     let data = doc.data();
                 // let documentDiv = document.createElement('div');
                 // documentDiv.textContent = doc.data().item;
@@ -17,9 +17,9 @@ var db = firebase.firestore();
                 <div class="Delivery">
                     <div>
                         <h3 >Eatc Delivery</h3>
-                        <p >${data.item}</p>
+                        <p >Item:${data.item}</p>
                         <p>${data.email}</p>
-                        <p>${data.seat}</p>
+                        <p>Seat NO:${data.seat}</p>
                     </div>
                     <div>
                         <p>${data.count}X ${data.item}</p>
@@ -39,16 +39,16 @@ var db = firebase.firestore();
                 // }
 
                 // Function to fetch and render all documents in the collection
-                function fetchAndRenderDocuments() {
-                db.collection('orders') // Replace "your-collection-name" with the actual collection name
+                function fetchAndRenderDocument() {
+                    db.collection('orders') // Replace "your-collection-name" with the actual collection name
                     .get()
                     .then(function(querySnapshot) {
-                    querySnapshot.forEach(function(doc) {
-                        
-                        renderDocument(doc);
-                        // let d=doc.data()
-                        // let k=`<div>${d.item}</div>`;
-                        // var final;
+                        querySnapshot.forEach(function(doc) {
+                            console.log("😊");
+                            renderDocumen(doc);
+                            // let d=doc.data()
+                            // let k=`<div>${d.item}</div>`;
+                            // var final;
                         // final+=k
                         
                     }
@@ -60,4 +60,4 @@ var db = firebase.firestore();
                     }
 
                     // Call the function to fetch and render the documents when needed
-                    fetchAndRenderDocuments();
+                    fetchAndRenderDocument();
