@@ -12,7 +12,6 @@ var db = firebase.firestore();
                 // let documentDiv = document.createElement('div');
                 // documentDiv.textContent = doc.data().item;
                 // orderlist.appendChild(documentDiv);
-                console.log("HELLO");
                 orderlist.innerHTML+=`
                 <div class="Delivery">
                     <div>
@@ -44,7 +43,6 @@ var db = firebase.firestore();
                     .get()
                     .then(function(querySnapshot) {
                         querySnapshot.forEach(function(doc) {
-                            console.log("😊");
                             renderDocumen(doc);
                             // let d=doc.data()
                             // let k=`<div>${d.item}</div>`;

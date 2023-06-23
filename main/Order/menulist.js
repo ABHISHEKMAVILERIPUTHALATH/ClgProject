@@ -1,4 +1,3 @@
-console.log("HELLO");
 var db = firebase.firestore();
 
                 // Retrieve documents from the collection and render them in the div
@@ -12,11 +11,11 @@ var db = firebase.firestore();
                 // let documentDiv = document.createElement('div');
                 // documentDiv.textContent = doc.data().item;
                 // orderlist.appendChild(documentDiv);
-                console.log("HELLO");
                 menulist.innerHTML+=`
-                <p >${data.name}</p>
-                <p >${data.price}</p>
-                
+                <div class="box">
+                    <p >${data.name}</p>
+                    <p >${data.price}</p>
+                </div>
                 
                 
                 `
