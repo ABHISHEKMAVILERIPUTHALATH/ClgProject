@@ -54,12 +54,42 @@
             margin-left: 7.5%;
             background-color: antiquewhite;
             padding: 30px;
+            background-color: #F4FFF2;
+            width:44%;
+
+        }
+        #save
+        {
+            width: 13%;
+    padding: 1.2%;
+    background-color: #bd2a2a;
+
+        }
+ 
+        #cancel
+        {
+            width: 13%;
+    padding: 1.2%;
+    background-color: #28a128;
         }
         .containe {
         position: relative;
         }
-
+       .button-row
+       {
+        display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    gap: 5px;
+       }
         #dropdown-content {
+            
+    justify-content: space-evenly;
+    margin: 10px 0;
+    min-width: 70vh;
+    overflow-y: scroll;
+    max-height: 74vh;
+    display: block;
         display: none;
         position: absolute;
         z-index: 1;
@@ -67,18 +97,33 @@
         min-width: 400px;
         padding: 10px;
         border: 1px solid #ddd;
+        margin-left:9%
         }
 
         /* .bottom-elements {
         margin-top: 10px;
         } */
-        #dropdown-button{
-            width: 70px;
-            height: 40px;
-        }
+        #dropdown-button {
+    width: 22%;
+    height: 1%;
+    font-size: 17px;
+    margin-left: 3%;
+    padding:2%;
+    border-radius: 52px;
+  }
+
+     #edit {
+    width: 22%;
+    height: 1%;
+    font-size: 17px;
+   margin-right:46%;
+    padding:2%;
+    border-radius: 52px;
+}
         .editData{
             gap: 10px;
-            margin-right: 30%;
+            width:6%;
+           
         }
 
     </style>
@@ -128,30 +173,35 @@
             <div id="menu">
                 <div class="single block">
                     <div class="menuheader">
-                        <h1 class="menu"> value</h1>
                         <button id="dropdown-button">show items</button>
-                        <button onclick="listitems()">Edit</button>
+                        <button id="edit" onclick="listitems()">Edit</button>
                     </div>
                     <div class="containe">
                         <div id="dropdown-content">
-                            
+                           
                         </div>
+                        
                     </div>
                 </div>
                 <dialog class="editData" >
                     <div class="btn">
-                        <button onclick="add()">add</button>
+                        <button style="padding:10%;width:100%"   onclick="add()">ADD</button >
                     </div>
                     <dialog class="add">
                         <h2>Add </h2>
-                        <button onclick="document.querySelector('.editData').close()">Cancel</button>
+                        
                         <input id="itemname" type="text" placeholder="Itemname">
                         <input id="price" type="number" placeholder="Price">
                         <input id="img" type="file" placeholder="Choose image">
                         <button onclick="uploadImage()">upload</button>
                         <input id="desc" type="text" placeholder="Add description having 10 words">
-                        <button onclick="writeuser(document.getElementById('itemname').value,document.getElementById('price').value,document.getElementById('img').value,document.getElementById('desc').value),
-                        document.querySelector('.add').close() ">save</button>
+                        <div class="button-row">
+                            <button id="save" onclick="writeuser(document.getElementById('itemname').value,document.getElementById('price').value,document.getElementById('img').value,document.getElementById('desc').value),
+                            document.querySelector('.add').close() ">save</button>
+        
+                        <button id="cancel" onclick="document.querySelector('.editData').close()">Cancel</button>
+                        
+                    </div>
                     </dialog>
                 </dialog>
             </div>   
