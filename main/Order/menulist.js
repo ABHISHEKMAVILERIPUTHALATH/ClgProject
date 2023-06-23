@@ -4,33 +4,24 @@ var db = firebase.firestore();
                 // Retrieve documents from the collection and render them in the div
                 // var documentsContainer = document.getElementById('addon');
                 var orderp = document.getElementById('op');
-                var orderlist = document.getElementById("orderlist")
+                var menulist= document.getElementById("dropdown-content")
 
                 // Function to render each document inside the div
-                function renderDocumen(doc) {
+                function renderDocument(doc) {
                     let data = doc.data();
                 // let documentDiv = document.createElement('div');
                 // documentDiv.textContent = doc.data().item;
                 // orderlist.appendChild(documentDiv);
                 console.log("HELLO");
-                orderlist.innerHTML+=`
-                <div class="Delivery">
-                    <div>
-                        <h3 >Eatc Delivery</h3>
-                        <p >Item:${data.item}</p>
-                        <p>${data.email}</p>
-                        <p>Seat NO:${data.seat}</p>
-                    </div>
-                    <div>
-                        <p>${data.count}X ${data.item}</p>
-                        <p>${data.count}X${data.price}</p>
-                        <p>total price ${data.count*data.price}</p>
-                        <button id="ProdReady">Ready</button>
-                    </div>
-                </div>
+                menulist.innerHTML+=`
+                <p >${data.name}</p>
+                <p >${data.price}</p>
+                
+                
+                
                 `
                 }
-
+// <button id="deleteButton">delete</button>
                 // var docfin=document.getElementById('fin');
                 // function pas(final){
                 //     findiv=document.createElement('div');
@@ -39,16 +30,17 @@ var db = firebase.firestore();
                 // }
 
                 // Function to fetch and render all documents in the collection
-                function fetchAndRenderDocument() {
-                    db.collection('orders') // Replace "your-collection-name" with the actual collection name
+                function fetchAndRenderDocuments() {
+                    // console.log(doc.id);
+                db.collection('products') // Replace "your-collection-name" with the actual collection name
                     .get()
                     .then(function(querySnapshot) {
-                        querySnapshot.forEach(function(doc) {
-                            console.log("😊");
-                            renderDocumen(doc);
-                            // let d=doc.data()
-                            // let k=`<div>${d.item}</div>`;
-                            // var final;
+                    querySnapshot.forEach(function(doc) {
+                        
+                        renderDocument(doc);
+                        // let d=doc.data()
+                        // let k=`<div>${d.item}</div>`;
+                        // var final;
                         // final+=k
                         
                     }
@@ -60,4 +52,18 @@ var db = firebase.firestore();
                     }
 
                     // Call the function to fetch and render the documents when needed
-                    fetchAndRenderDocument();
+                    fetchAndRenderDocuments();
+
+                    // var deleteButton = document.getElementById('deleteButton');
+
+                    // deleteButton.addEventListener('click', function() {
+                    // var docRef = db.collection('products').doc('doc.id');
+
+                    // docRef.delete()
+                    //     .then(function() {
+                    //     console.log("Document successfully deleted!");
+                    //     })
+                    //     .catch(function(error) {
+                    //     console.error("Error removing document: ", error);
+                    //     });
+                    // });
