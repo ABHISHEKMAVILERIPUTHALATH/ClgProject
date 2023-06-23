@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login Page</title>
+  <title>eatC - restaurant</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
   <script>
@@ -16,27 +18,43 @@
         };
         firebase.initializeApp(firebaseConfig);
   </script>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h1>Login</h1>
-      <span class="close">&times;</span>
-    </div>
-    <form>
-      <label for="username">Username</label>
-      <input type="text" id="username" placeholder="Enter your username" required>
-      <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Enter your password" required>
-      <div class="checkbox-container">
+  <div class="login-box">
+    <h1>eatC resto</h1>
+    <form id="formlogin">
+      <div class="textbox">
+        <input id="mail" type="text" placeholder="Email" name="email" required>
       </div>
-      <button type="submit">Login</button>
-      <button class="sign_in" type="submit" onclick="loginWithGoogle()">sign in with google</button>
+      <div class="textbox">
+        <input id="passsignin" type="password" placeholder="Password" name="password" required>
+      </div>
+      <input onclick="signin()" class="btn0" type="submit" value="Sign in">
+      <input class="btn1" type="submit" onclick="loginWithGoogle()" value="Sign in with google">
+      <p class="signup-link">Don't have an account? <a href="../signup/signup.html">Sign up</a></p>
     </form>
-    <div class="footer">
-      <p>New to eatC? <a href="#">Create account</a></p>
-    </div>
   </div>
+
+    <!-- <script defer>
+        let user = firebase.auth().currentUser;
+        firebase.auth().onAuthStateChanged((user)=>{
+            const usernameElement = document.getElementById('username');
+            usernameElement.innerHTML=user.displayName
+            document.getElementById('dp').src=user.photoURL;
+        })
+// const displayName = user.displayName;
+
+// Get the reference to the HTML element
+
+// Update the content of the element with the user name
+// usernameElement.innerHTML = displayName;
+        function showPopup(name){
+            document.getElementById('popup').showModal();
+            document.getElementById('popupname').innerHTML=name
+        }
+    </script>
+    
+</body>
+</html>
+  </dialog> -->
   <script>
     var provider = new firebase.auth.GoogleAuthProvider();
     function loginWithGoogle() {
@@ -44,7 +62,8 @@
       var provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().signInWithPopup(provider)
         .then((result) => {
-          window.location = "/main/Order/Order.html";
+          window.location.href = "../order/order.html";
+          // document.getElementById("main").showModal();
         })
         .catch((error) => {
           // Handle sign-in errors
@@ -52,8 +71,25 @@
           var errorMessage = error.message;
           console.error(errorCode, errorMessage);
         });
-}
-
+      }
+      const  email=document.getElementById("mail");
+      const  password=document.getElementById("passsignin");
+      document.getElementById('formlogin').addEventListener('submit', function(event) {
+      event.preventDefault(); 
+            console.log("😍");
+          firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+          .then((userCredential) => {
+            // Signed in
+            var user = userCredential.user;
+            window.location.href="../order/order.html"
+            // ...
+          })
+          .catch((error) => {
+            alert(error.message);
+            // var errorCode = error.code;
+            // var errorMessage = error.message;
+          });
+    });
   </script>
 </body>
 </html>
