@@ -27,122 +27,10 @@
   </script>
 </head>
 <body>
-    <style>
-        .widhtcls{
-            width: 85%;
-            height: 85%;
-        }
-    
-        aside{
-            flex: 1;
-        }
-        .main{
-            display: flex;
-            justify-content: flex-start;
-        }
-        #orderlist{
-            min-width: 100vh;
-            overflow-y: scroll;
-            max-height: 80vh;
-        }
-        .menuheader{
-            min-width: 100vh;
-            display: flex;
-            justify-content: space-between;
-        }
-        #menu{
-            margin-left: 7.5%;
-            background-color: antiquewhite;
-            padding: 30px;
-            background-color: #F4FFF2;
-            width:44%;
-
-        }
-        #save
-        {
-            width: 13%;
-            padding: 1.2%;
-            background-color: #bd2a2a;
-
-        }
- 
-        #cancel
-        {
-            width: 13%;
-            padding: 1.2%;
-            background-color: #28a128;
-        }
-        .containe {
-            position: relative;
-        }
-       .button-row
-       {
-        display: flex;
-        margin-top: 10px;
-        justify-content: center;
-        gap: 5px;
-       }
-        #dropdown-content {
-            
-        justify-content: space-evenly;
-        margin: 10px 0;
-        min-width: 70vh;
-        overflow-y: scroll;
-        max-height: 74vh;
-        display: block;
-        display: none;
-        position: absolute;
-        z-index: 1;
-        background-color: #f9f9f9;
-        min-width: 400px;
-        padding: 10px;
-        border: 1px solid #ddd;
-        margin-left:9%
-        }
-
-        /* .bottom-elements {
-        margin-top: 10px;
-        } */
-        #dropdown-button {
-        width: 22%;
-        height: 1%;
-        font-size: 17px;
-        margin-left: 3%;
-        padding:2%;
-        border-radius: 52px;
-        }
-
-     #edit {
-        width: 22%;
-        height: 1%;
-        font-size: 17px;
-        margin-right:46%;
-        padding:2%;
-        border-radius: 52px;
-}
-        .editData{
-        gap: 10px;
-        width:6%;
-           
-        }
-        .box{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: yellow;
-            height: 60px;
-            
-        }
-        .add input{
-            margin: 7px 5px;
-        }
-
-
-    </style>
     <nav>  
         <a href="detail page">
-            <img src="../images/logo.png" alt="Logo">
-            <p>-restaurant partner-</p>
+            <img style="margin-top:2px;"src="../images/logo.png" alt="Logo">
+            <p >-restaurant partner-</p>
         </a>
         <input  class="curve" type="search"  id="SearchTag" placeholder="Look for orders by ID,food item or customer name">
         <div class="curve">
@@ -156,8 +44,8 @@
         <aside>
                 <span onclick="show('orders')" ><svg width="20" height="20" viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg"><path d="M53.6 1023.2c-6.4 0-12.8-2.4-17.6-8-4.8-4.8-7.2-11.2-6.4-18.4L80 222.4c.8-12.8 11.2-22.4 24-22.4h211.2v-3.2c0-52.8 20.8-101.6 57.6-139.2C410.4 21.6 459.2.8 512 .8c108 0 196.8 88 196.8 196.8 0 .8-.8 1.6-.8 2.4v.8h212c12.8 0 23.2 9.6 24 22.4L993.6 992c.8 2.4.8 4 .8 6.4-.8 13.6-11.2 24.8-24.8 24.8h-916zm25.6-48H944l-46.4-726.4H708v57.6h.8c12.8 8.8 20 21.6 20 36 0 24.8-20 44.8-44.8 44.8s-44.8-20-44.8-44.8c0-14.4 7.2-27.2 20-36h.8v-57.6H363.2v57.6h.8c12.8 8.8 20 21.6 20 36 0 24.8-20 44.8-44.8 44.8-24.8 0-44.8-20-44.8-44.8 0-14.4 7.2-27.2 20-36h.8v-57.6H125.6L79.2 975.2zM512 49.6c-81.6 0-148.8 66.4-148.8 148.8v3.2h298.4l-.8-1.6v-1.6c0-82.4-67.2-148.8-148.8-148.8z"/></svg>Order</span>
                 <span onclick="show('menu')"><svg width="20" height="20" viewBox="0 0 24 24" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line"><path d="M3 12h18M9 18h12M3 6h12" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2"/></svg>Menu</span>
-                <span><svg height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" xml:space="preserve"><path d="M12 24C5.4 24 0 18.6 0 12h2c0 5.5 4.5 10 10 10s10-4.5 10-10S17.5 2 12 2C8.4 2 5.1 3.9 3.3 7H8v2H0V1h2v4.4C4.2 2.1 8 0 12 0c6.6 0 12 5.4 12 12s-5.4 12-12 12zm3.3-6.2L11 13.4V6h2v6.6l3.7 3.8-1.4 1.4z"/></svg>Order history</span>
-                <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21H3.8a.8.8 0 0 1-.8-.8V3" stroke="#000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/><path d="M5.47 13.47a.75.75 0 1 0 1.06 1.06l-1.06-1.06ZM10 10l.53-.53a.75.75 0 0 0-1.06 0L10 10Zm4 4-.53.53a.75.75 0 0 0 1.06 0L14 14Zm7.53-6.47a.75.75 0 0 0-1.06-1.06l1.06 1.06Zm-15 7 4-4-1.06-1.06-4 4 1.06 1.06Zm2.94-4 4 4 1.06-1.06-4-4-1.06 1.06Zm5.06 4 7-7-1.06-1.06-7 7 1.06 1.06Z" fill="#000"/></svg>Insights</span>
+                <span onclick="show('orderhistory')"><svg height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" xml:space="preserve"><path d="M12 24C5.4 24 0 18.6 0 12h2c0 5.5 4.5 10 10 10s10-4.5 10-10S17.5 2 12 2C8.4 2 5.1 3.9 3.3 7H8v2H0V1h2v4.4C4.2 2.1 8 0 12 0c6.6 0 12 5.4 12 12s-5.4 12-12 12zm3.3-6.2L11 13.4V6h2v6.6l3.7 3.8-1.4 1.4z"/></svg>Order history</span>
+                <span onclick="show('insight')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21H3.8a.8.8 0 0 1-.8-.8V3" stroke="#000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/><path d="M5.47 13.47a.75.75 0 1 0 1.06 1.06l-1.06-1.06ZM10 10l.53-.53a.75.75 0 0 0-1.06 0L10 10Zm4 4-.53.53a.75.75 0 0 0 1.06 0L14 14Zm7.53-6.47a.75.75 0 0 0-1.06-1.06l1.06 1.06Zm-15 7 4-4-1.06-1.06-4 4 1.06 1.06Zm2.94-4 4 4 1.06-1.06-4-4-1.06 1.06Zm5.06 4 7-7-1.06-1.06-7 7 1.06 1.06Z" fill="#000"/></svg>Insights</span>
                 <span><svg width="20" height="20" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="si-glyph si-glyph-money-$"><path d="M11.979 10.596c0-1.695-1.358-3.104-3.011-3.381V3.828c.504.156 1.025.195 1.235.67.19.428.671.611 1.072.41.403-.202.573-.714.384-1.143-.473-1.066-1.542-1.494-2.676-1.688V0H8v2.066c-1.664.251-2.995 1.67-2.995 3.383 0 1.71 1.324 3.127 2.995 3.383v3.41c-.536-.148-1.033-.198-1.252-.695-.188-.43-.668-.613-1.068-.412-.404.201-.576.711-.388 1.141.481 1.09 1.554 1.531 2.724 1.711V16h.938v-2.021c1.646-.272 3.025-1.685 3.025-3.383ZM6.617 5.449c0-.774.598-1.424 1.413-1.633v3.269c-.815-.211-1.413-.86-1.413-1.636Zm2.344 6.774V8.969c.815.225 1.41.865 1.41 1.627s-.595 1.402-1.41 1.627Z" fill="#434343" class="si-glyph-fill" fill-rule="evenodd"/></svg>Payout</span>
                 <span onclick="logout()"><svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 1h7v1H2v11h6v1H1V1Zm9.854 3.146 3.34 3.34-3.327 3.603-.734-.678L12.358 8H4V7h8.293l-2.147-2.146.708-.708Z" fill="#000"/></svg>Logout</a>
         </aside>
@@ -166,11 +54,11 @@
                 <div class="status font" >
                     <div>
                         <p>Preparing</p>
-                        <p> no</p>
+                        <p class="prepno"> no</p>
                     </div>
                     <div>
                         <p>Ready</p>
-                        <p>no</p>
+                        <p class="redno">no</p>
                     </div>
                     <div>
                         <p>picked up</p>
@@ -185,8 +73,8 @@
             <div id="menu">
                 <div class="single block">
                     <div class="menuheader">
-                        <button id="dropdown-button">show items</button>
-                        <button id="edit" onclick="listitems()">Edit</button>
+                        <button id="dropdown-button" >show items</button>
+                        <button id="edit" onclick="add()">Edit</button>
                     </div>
                     <div class="containe">
                         <div id="dropdown-content">
@@ -195,11 +83,11 @@
                         
                     </div>
                 </div>
-                <dialog class="editData" >
+                <!-- <dialog class="editData" >
                     <div class="btn">
-                        <button style="padding:10%;width:100%"   onclick="add()">ADD</button >
-                    </div>
-                    <dialog class="add" style="height: 200px; ;">
+                        <button style="padding:10%;width:100%"   >ADD</button >
+                    </div> -->
+                    <dialog class="add" style="height: 300px; width: 400px; border: none; border-radius: 10px;">
                         <h2>Add </h2>
                         
                         <input id="itemname" type="text" placeholder="Itemname" required>
@@ -215,25 +103,32 @@
                             <button id="save" onclick="writeuser(document.getElementById('itemname').value,document.getElementById('price').value,imageURL, document.getElementById('desc').value,document.getElementById('time').value,document.getElementById('rating').value),
                             document.querySelector('.add').close() ">save</button>
         
-                            <button id="cancel" onclick="document.querySelector('.editData').close()">Cancel</button>
+                            <button id="cancel" onclick="document.querySelector('.add').close()">Cancel</button>
                         
                         </div>
                     </dialog>
                 </dialog>
-            </div>   
+            </div> 
+            <div id="orderhistory" style="margin: 10%;">
+                <h1 style="text-decoration: underline;">Order history</h1>
+                <h2 id="totalorder">total order</h2>
+            </div>  
+            <div style="margin: 10%;" id="insight">
+                <h1 style="text-decoration: underline;">Insights</h1>
+                <h2 id="earning"></h2>
+            </div>
         </div>
         <script src="./order.js"></script>
         <script src="./menulist.js"></script>
     </div>
     <script defer>
+        
         function orderbox(){
         document.getElementById("orderbox").showModal();}
         function add(){
         document.querySelector(".add").showModal();}
         function delete_item(){
         document.querySelector(".delete_item").showModal();}
-        function listitems(){
-        document.querySelector(".editData").showModal();}
         function menubox(){
             document.getElementById("menubox").showModal();}
         function clo(){
