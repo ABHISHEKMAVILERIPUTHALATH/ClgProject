@@ -12,7 +12,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
   <script>
     const firebaseConfig = {
           apiKey: "AIzaSyAhsLFXuGPA_uP42iTcUSR1x4sZyhWCbzU",
@@ -55,7 +55,7 @@
             background-color: antiquewhite;
             padding: 30px;
             background-color: #F4FFF2;
-            width:55%;
+            width:44%;
 
         }
         #save
@@ -205,14 +205,14 @@
                         <input id="itemname" type="text" placeholder="Itemname" required>
                         <input id="price" type="number" placeholder="Price" required>
                         <div id="image-upload-form">
-                            <input id="img" type="file" placeholder="Choose image" required>
-                            <button type="submit" >upload img</button>
+                            <input id="img" type="file" placeholder="Choose image" accept="image/*" required>
+                            <button id="upload" onclick="uploadimg()"type="submit" >upload img</button>
                         </div>
                         <input id="desc" type="text" placeholder="Add description having 10 words" required>
-                        <input type="number" placeholder="minute format" required>
-                        <input type="number" max="5" min="1" placeholder="rating" required>
+                        <input id="time" type="number" placeholder="minute format" required>
+                        <input id="rating" type="number" max="5" min="1" placeholder="rating" required>
                         <div class="button-row">
-                            <button id="save" onclick="writeuser(document.getElementById('itemname').value,document.getElementById('price').value,document.getElementById('img').value,document.getElementById('desc').value),
+                            <button id="save" onclick="writeuser(document.getElementById('itemname').value,document.getElementById('price').value,imageURL, document.getElementById('desc').value,document.getElementById('time').value,document.getElementById('rating').value),
                             document.querySelector('.add').close() ">save</button>
         
                             <button id="cancel" onclick="document.querySelector('.editData').close()">Cancel</button>
@@ -225,7 +225,7 @@
         <script src="./order.js"></script>
         <script src="./menulist.js"></script>
     </div>
-    <script>
+    <script defer>
         function orderbox(){
         document.getElementById("orderbox").showModal();}
         function add(){
@@ -253,6 +253,7 @@
         const dropdownButton = document.getElementById('dropdown-button');
         const dropdownContent = document.getElementById('dropdown-content');
         const bottomElements = document.querySelector('.bottom-elements');
+        var imageURL=null
 
         dropdownButton.addEventListener('click', function() {
         if (dropdownContent.style.display === 'none') {
@@ -265,65 +266,63 @@
         });
         console.log(document.getElementById('itemname').value);
         var db=firebase.firestore();
-            function writeuser(name,price,image,product_desc){
+
+            function writeuser(name,price,image,product_desc,time,rating){
                 db.collection('products').doc().set({
                 image,
                 name:name.toUpperCase(),
-                price,product_desc
+                price,product_desc,time,rating
                 
             });
             }
-            // document.getElementById('image-upload-form').addEventListener('submit', function(event) {
-            // event.preventDefault(); // Prevent the form from submitting
-            // console.log("👌");
-            // const fileInput = document.getElementById('img');
-            // const file = fileInput.files[0];
+            var storage=firebase.storage();
+            function uploadimg(){
+                // document.getElementById('image-upload-form').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            const fileInput = document.getElementById('img');
+            const file = fileInput.files[0];
+            
+            // Create a storage reference with a unique filename
+            console.log("👌");
+            const storageRef = storage.ref().child(''+ file.name);
 
-            // // Create a storage reference with a unique filename
-            // const storageRef = storage.ref().child('image/' + file.name);
+            // Upload the file to Firebase Storage
+            const uploadTask = storageRef.put(file);
 
-            // // Upload the file to Firebase Storage
-            // const uploadTask = storageRef.put(file);
+            // Monitor the upload progress
+            uploadTask.on('state_changed',
+            
+                (snapshot) => {
+                // Update progress (e.g., display a progress bar)
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload progress: ' + progress + '%');
+                if(progress==100)
+                    document.getElementById("upload").innerHTML="uploaded"
+                },
+                (error) => {
+                // Handle errors during upload
+                console.error('Upload error:', error);
+                },
+                () => {
+                // Upload successful, get the download URL
+                uploadTask.snapshot.ref.getDownloadURL()
+                    .then((downloadURL) => {
+                    console.log('Image uploaded:', downloadURL);
 
-            // // Monitor the upload progress
-            // uploadTask.on('state_changed',
-            //     (snapshot) => {
-            //     // Update progress (e.g., display a progress bar)
-            //     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            //     console.log('Upload progress: ' + progress + '%');
-            //     },
-            //     (error) => {
-            //     // Handle errors during upload
-            //     console.error('Upload error:', error);
-            //     },
-            //     () => {
-            //     // Upload successful, get the download URL
-            //     uploadTask.snapshot.ref.getDownloadURL()
-            //         .then((downloadURL) => {
-            //         console.log('Image uploaded:', downloadURL);
+                    // Store the file reference in the Firebase Realtime Database or Firestore
+                    imageURL=downloadURL;
 
-            //         // Store the file reference in the Firebase Realtime Database or Firestore
-            //         saveFileReference(downloadURL);
+                    // Display the uploaded image
+                    // const uploadedImage = document.getElementById('uploaded-image');
+                    // uploadedImage.src = downloadURL;
+                    })
+                    .catch((error) => {
+                    console.error('Download URL error:', error);
+                    });
 
-            //         // Display the uploaded image
-            //         const uploadedImage = document.getElementById('uploaded-image');
-            //         uploadedImage.src = downloadURL;
-            //         })
-            //         .catch((error) => {
-            //         console.error('Download URL error:', error);
-            //         });
-            //     }
-            // );
-            // });
+                });
+            };
 
-            // function saveFileReference(downloadURL) {
-            // // Save the downloadURL or any other relevant information to the database
-            // // Use Firebase Realtime Database or Firestore to store the file reference
-            // // Example code for storing the downloadURL in the Realtime Database:
-            // firebase.database().ref('files').push({
-            //     url: downloadURL
-            // });
-            // }
 
     </script>
 </body>
