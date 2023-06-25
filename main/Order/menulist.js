@@ -15,10 +15,21 @@ var db = firebase.firestore();
                 <div class="box">
                     <p >${data.name}</p>
                     <p >${data.price}</p>
+                    <button onclick="deleteProduct('${doc.id}')">Delete</button>
                 </div>
                 
                 
                 `
+                }
+                function deleteProduct(id){
+                    console.log(id);
+                    db.collection("products").doc(id).delete().then(() => {
+                        console.log("Document successfully deleted!");
+                        menulist.innerHTML='';
+                        fetchAndRenderDocuments();
+                    }).catch((error) => {
+                        console.error("Error removing document: ", error);
+                    });
                 }
 // <button id="deleteButton">delete</button>
                 // var docfin=document.getElementById('fin');
@@ -36,7 +47,7 @@ var db = firebase.firestore();
                     .then(function(querySnapshot) {
                     querySnapshot.forEach(function(doc) {
                         
-                        renderDocument(doc);
+                        renderDocument(doc)
                         // let d=doc.data()
                         // let k=`<div>${d.item}</div>`;
                         // var final;
