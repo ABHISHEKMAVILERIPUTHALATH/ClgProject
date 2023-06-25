@@ -77,10 +77,9 @@ var db = firebase.firestore();
                     fetchAndRenderDocument();
                     var count=null
                     function deleteorder(id){
-                        count+=1
-                        document.querySelector(".redno").innerHTML=count;
-                        document.getElementById('totaluser').innerHTML="Total no of users:"+ count;
+                        //
                         console.log(id);
+                        console.log("❤️");
                         db.collection("orders").doc(id).delete().then(() => {
                             console.log("Document successfully deleted!");
                             orderlist.innerHTML="";
@@ -88,4 +87,7 @@ var db = firebase.firestore();
                         }).catch((error) => {
                             console.error("Error removing document: ", error);
                         });
+                        count+=1
+                        document.querySelector(".redno").innerHTML=count;
+                        document.getElementById('totaluser').innerHTML="Total no of users:"+ count;
                     }
