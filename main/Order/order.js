@@ -51,12 +51,14 @@ var db = firebase.firestore();
                         querySnapshot.forEach(function(doc) {
                             renderDocumen(doc);
                             total[0]+=doc.data().count*doc.data().price;
-                            total[1]+=parseInt(doc.data().count);
+                            total[1]+=doc.data().count;
+                            // total[1]+=1
+                            
                             total[2]+=1
                             
                             console.log(total[2]);
                             document.querySelector(".prepno").innerHTML=total[2]
-                            document.getElementById('totalorder').innerHTML="Total order:"+ total[1]
+                            document.getElementById('totalorder').innerHTML="Total order:"+ total[1];
                             document.getElementById('earning').innerHTML="Total earning:"+ total[0]
                             
                             // let d=doc.data()
@@ -78,8 +80,8 @@ var db = firebase.firestore();
                     var count=null
                     function deleteorder(id){
                         //
-                        console.log(id);
-                        console.log("❤️");
+                        // console.log(id);
+                        // console.log("❤️");
                         db.collection("orders").doc(id).delete().then(() => {
                             console.log("Document successfully deleted!");
                             orderlist.innerHTML="";
